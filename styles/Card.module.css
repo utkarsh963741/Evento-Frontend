@@ -1,0 +1,136 @@
+.cardContainer{
+    background-color: white;
+    width: 500px;
+    max-width: 95vw;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    margin: 15px 0;
+}
+
+.cardHeader{
+    display: flex;
+    margin: 7px 10px 7px 15px;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.cardHeader div{
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.cardHeader img{
+    height: 30px;
+    border-radius: 50%;
+    margin-right: 7px;
+}
+
+.cardHeader i{
+    justify-self: end;
+    text-align: end;
+    cursor: pointer;
+}
+
+.cardHeader i:hover{
+    transform: scale(1.05);
+}
+
+.imageContainer{
+    height: 500px;
+    width: 500px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-top: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.buttonContainer{
+    margin: 10px 5px 5px 5px;
+}
+
+.buttonContainer>*{
+    margin: 0px 5px;
+    font-size: 1.3em;
+    font-weight: 400;
+    cursor: pointer;
+}
+
+.buttonContainer>*:hover{
+    color: gray;
+}
+
+.postDetails{
+    display:flex ;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0px 5px;
+    font-size: 0.95em;
+}
+
+.postDetails>:nth-child(1){
+    display: flex;
+}
+.postDetails>:nth-child(1)>div{
+    font-weight: 600;
+    margin: 0px 2px;
+    cursor: pointer;
+}
+
+.postDetails>:nth-child(2){
+    color: gray;
+}
+
+
+.caption{
+    margin: 10px 5px;
+}
+
+.commentContainer{
+    display: flex;
+    flex-direction: column;
+    margin: 2px 5px;
+}
+
+.commentContainer>:first-child{
+    color: gray;
+    cursor: pointer;
+}
+
+.comment{
+    width: fit-content;
+    margin: 3px 0;
+}
+
+.addComment{
+    display: flex;
+    align-items: center;
+    border-top: 1px solid var(--border-color);
+    height: 55px;
+    padding: 10px;
+}
+
+.addComment i{
+    font-size: 1.5em;
+    font-weight: 100;
+    margin-right: 10px;
+}
+
+.addComment input{
+    flex-grow: 1;
+    border: none;
+    outline: none;
+    height: 100%;
+    font-size: 1.05em;
+}
+
+.addComment div{
+    cursor: pointer;
+    color:var(--color-primary);
+    font-weight: 600;
+}

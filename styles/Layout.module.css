@@ -1,0 +1,14 @@
+.children
+{
+    width:100%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    /* padding: 20px; */
+    margin-top: calc(var(--navbar-height));
+    height:calc(var(100vh - var(--navbar-height)));
+    overflow-y: scroll;
+    flex-grow:2;
+    background-color:var(--bg-color);
+    /* background-color:black; */
+}

@@ -1,0 +1,95 @@
+.gridContainer{
+    width:60%;
+    display: flex;
+    margin: 10px;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-around;
+    margin: 20px 0;
+}
+
+.hoverCard{
+    margin: 10px;
+    width:270px;
+    height: 270px;
+    border-radius: 3px;
+    overflow: hidden;
+    cursor: pointer;
+    position: relative;
+}
+
+.hoverCardTall{
+    margin: 10px;
+    width:585px;
+    height: 565px;
+    border-radius: 3px;
+    overflow: hidden;
+    cursor: pointer;
+    position: relative;
+}
+
+.details{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width:270px;
+    height: 270px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    display: none;
+}
+
+.detailsTall{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width:585px;
+    height: 565px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    display: none;
+}
+
+.hoverCard>*
+{
+    transition: all ease-in-out 0.15s;
+}
+
+.hoverCardTall>*
+{
+    transition: all ease-in-out 0.15s;
+}
+
+.details> * {
+    margin: 10px;
+}
+
+.detailsTall> * {
+    margin: 10px;
+}
+
+.hoverCard:hover .details{
+    display: flex;
+}
+.hoverCard:hover img{
+    transform: scale(1.1);
+}
+
+
+
+.hoverCardTall:hover .detailsTall{
+    display: flex;
+}
+.hoverCardTall:hover img{
+    transform: scale(1.1);
+}
+
+
+/*-----------------------------------------*/
+
