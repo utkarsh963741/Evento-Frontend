@@ -64,6 +64,7 @@ function Explore() {
                         {'src':'/assets/grid.jpg','likes':'190','comments':'456'},
                         {'src':'/assets/grid.jpg','likes':'190','comments':'456'},
                         {'src':'/assets/grid.jpg','likes':'190','comments':'456'},
+                        {'src':'/assets/grid.jpg','likes':'190','comments':'456'},
                     ]
     return (
         <>

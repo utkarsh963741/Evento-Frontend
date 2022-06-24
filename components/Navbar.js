@@ -83,9 +83,9 @@ function Navbar(props) {
                         <li className={styles.nav_item}>
                             <Link href='/account'><i className="far fa-calendar-day" style={{fontSize:'1.5em'}}></i></Link>
                         </li>
-                        <li className={styles.nav_item}>
+                        {/* <li className={styles.nav_item}>
                             <Link href='/test'><i className="far fa-hammer" style={{fontSize:'1.5em'}}></i></Link>
-                        </li>
+                        </li> */}
                         </div>
                         
 

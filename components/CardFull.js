@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import styles from '../styles/CardFull.module.css'
 
-function CardFull() {
+function CardFull(props) {
 
     return (
         <div className={styles.cardBody}>
-            <div className={styles.closeIcon}><i className='far fa-times'></i></div>
+            <div className={styles.closeIcon}><i className='far fa-times' onClick={props.close}></i></div>
             <div className={styles.cardContainer}>
                 <div className={styles.imageContainer}>
                     <img src="/assets/download.jpg" style={{width:'100%'}} alt=""></img>

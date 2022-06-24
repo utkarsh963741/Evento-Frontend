@@ -67,6 +67,9 @@ function Grid(props) {
             
             var gridType = Math.floor(Math.random() * 4);
 
+            if(temp.length < 6)
+                break
+                
             res.push(makeGrid(temp,gridType,i))
         }
 

@@ -50,6 +50,12 @@
     border-bottom: 1px solid var(--border-color);
 }
 
+.buttonContainerContainer{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
 .buttonContainer{
     margin: 10px 5px 5px 5px;
 }
@@ -63,6 +69,13 @@
 
 .buttonContainer>*:hover{
     color: gray;
+}
+
+.registerBtn{
+    cursor: pointer;
+    color:var(--color-primary);
+    font-weight: 600;
+    margin-right: 10px;
 }
 
 .postDetails{
