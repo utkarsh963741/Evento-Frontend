@@ -42,7 +42,7 @@ function createProfile() {
                     onChange={handleChange} // assign onChange function
                 />
                 </div>
-                {/* <UserProfile/> */}
+                <UserProfile/>
                 <OrganizationProfile/>
             </div>
         </div>

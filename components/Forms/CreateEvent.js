@@ -41,28 +41,28 @@ function CreateEvent() {
                           <input 
                               className={styles.input_box} 
                               type="text" id="name" name="name" 
-                              placeholder="Enter Name of Product..."
+                              placeholder="Enter the Event name..."
                             //   onChange={(e) => setName(e.target.value)}
                           />
 
                           <label>Website URL</label>
                           <div className={styles.icon_input_box} style={{display:"flex",alignItems:"center"}}>
-                              <i className="fas fa-rupee-sign" style={{fontWeight:"100"}}></i>
+                              <i className="fas fa-globe" style={{fontWeight:"100"}}></i>
                               <input 
                                   className={styles.icon_input}  
                                   type="number" min="0.00" step="any" id="price" name="price" 
-                                  placeholder="Enter Price of Product..."
+                                  placeholder="Enter the URL..."
                                 //   onChange={(e) => setPrice(e.target.value)}
                               />
                           </div>
 
                           <label>Date</label>
                           <div className={styles.icon_input_box} style={{display:"flex",alignItems:"center"}}>
-                              <i className="fas fa-rupee-sign" style={{fontWeight:"100"}}></i>
+                              <i className="fas fa-calendar" style={{fontWeight:"100"}}></i>
                               <input 
                                   className={styles.icon_input}  
                                   type="number" min="0.00" step="any" id="price" name="price" 
-                                  placeholder="Enter Price of Product..."
+                                  placeholder="Enter the Date..."
                                 //   onChange={(e) => setPrice(e.target.value)}
                               />
                           </div>
@@ -76,7 +76,7 @@ function CreateEvent() {
                                 <input type="radio" value="male" id="male"
                                     // onChange={this.handleChange} name="gender" 
                                 />
-                                <i className="fas fa-clock" style={{fontWeight:"100",margin:'0px 10px'}}></i>
+                                <i className="fas fa-video" style={{fontWeight:"100",margin:'0px 10px'}}></i>
                                 <label for="male">Online</label>
                             </div>
                             
@@ -85,18 +85,18 @@ function CreateEvent() {
                                 <input type="radio" value="female" id="female"
                                     // onChange={this.handleChange} name="gender" 
                                 />
-                                <i className="fas fa-clock" style={{fontWeight:"100",margin:'0px 10px'}}></i>
+                                <i className="fas fa-users" style={{fontWeight:"100",margin:'0px 10px'}}></i>
                                 <label for="female">Offline</label>
                             </div>
                         </div>
                         
                         <label>Organization</label>
                         <div className={styles.icon_input_box} style={{display:"flex",alignItems:"center"}}>
-                            <i className="fas fa-clock" style={{fontWeight:"100"}}></i>
+                            <i className="fas fa-table" style={{fontWeight:"100"}}></i>
                             <input 
                                 className={styles.icon_input}  
                                 type="number" min="0.00" step="any" id="time" name="time" 
-                                placeholder="Enter time required for Production..."
+                                placeholder="Organization..."
                                 // onChange={(e) => setTime(e.target.value)}
                             />
                         </div>
@@ -105,7 +105,7 @@ function CreateEvent() {
                         <textarea 
                              className={styles.input_box+' '+styles.textarea} 
                              type="textarea" id="name" name="name" 
-                             placeholder="Enter Name of Product..."
+                             placeholder="Enter event details here..."
                              rows="15" cols="50"
                            //   onChange={(e) => setName(e.target.value)}
                         />

@@ -59,28 +59,28 @@ function OrganizationProfile() {
                           <input 
                               className={styles.input_box} 
                               type="text" id="name" name="name" 
-                              placeholder="Enter Name of Product..."
+                              placeholder="Enter Name of Organization..."
                             //   onChange={(e) => setName(e.target.value)}
                           />
 
                           <label>Email</label>
                           <div className={styles.icon_input_box} style={{display:"flex",alignItems:"center"}}>
-                              <i className="fas fa-rupee-sign" style={{fontWeight:"100"}}></i>
+                              <i className="fas fa-envelope" style={{fontWeight:"100"}}></i>
                               <input 
                                   className={styles.icon_input}  
                                   type="number" min="0.00" step="any" id="price" name="price" 
-                                  placeholder="Enter Price of Product..."
+                                  placeholder="Enter your email address..."
                                 //   onChange={(e) => setPrice(e.target.value)}
                               />
                           </div>
 
                           <label>Phone no.</label>
                           <div className={styles.icon_input_box} style={{display:"flex",alignItems:"center"}}>
-                              <i className="fas fa-rupee-sign" style={{fontWeight:"100"}}></i>
+                              <i className="fas fa-phone" style={{fontWeight:"100"}}></i>
                               <input 
                                   className={styles.icon_input}  
                                   type="number" min="0.00" step="any" id="price" name="price" 
-                                  placeholder="Enter Price of Product..."
+                                  placeholder="Enter your mobile no..."
                                 //   onChange={(e) => setPrice(e.target.value)}
                               />
                           </div>
@@ -93,44 +93,44 @@ function OrganizationProfile() {
 
                         <label>College</label>
                         <div className={styles.icon_input_box} style={{display:"flex",alignItems:"center"}}>
-                            <i className="fas fa-clock" style={{fontWeight:"100"}}></i>
+                            <i className="fas fa-graduation-cap" style={{fontWeight:"100"}}></i>
                             <input 
                                 className={styles.icon_input}  
                                 type="number" min="0.00" step="any" id="time" name="time" 
-                                placeholder="Enter time required for Production..."
+                                placeholder="Enter your College name..."
                                 // onChange={(e) => setTime(e.target.value)}
                             />
                         </div>
 
                         <label>Founding Year</label>
                         <div className={styles.icon_input_box} style={{display:"flex",alignItems:"center"}}>
-                            <i className="fas fa-clock" style={{fontWeight:"100"}}></i>
+                            <i className="fas fa-lightbulb-on" style={{fontWeight:"100"}}></i>
                             <input 
                                 className={styles.icon_input}  
                                 type="number" min="0.00" step="any" id="time" name="time" 
-                                placeholder="Enter time required for Production..."
+                                placeholder="Enter the founding year..."
                                 // onChange={(e) => setTime(e.target.value)}
                             />
                         </div>
 
                         <label>Location</label>
                         <div className={styles.icon_input_box} style={{display:"flex",alignItems:"center"}}>
-                            <i className="fas fa-clock" style={{fontWeight:"100"}}></i>
+                            <i className="fas fa-location" style={{fontWeight:"100"}}></i>
                             <input 
                                 className={styles.icon_input}  
                                 type="number" min="0.00" step="any" id="time" name="time" 
-                                placeholder="Enter time required for Production..."
+                                placeholder="Enter the location of organization..."
                                 // onChange={(e) => setTime(e.target.value)}
                             />
                         </div>
 
                         <label>Website Link</label>
                         <div className={styles.icon_input_box} style={{display:"flex",alignItems:"center"}}>
-                            <i className="fas fa-clock" style={{fontWeight:"100"}}></i>
+                            <i className="fas fa-link" style={{fontWeight:"100"}}></i>
                             <input 
                                 className={styles.icon_input}  
                                 type="number" min="0.00" step="any" id="time" name="time" 
-                                placeholder="Enter time required for Production..."
+                                placeholder="Enter your website link..."
                                 // onChange={(e) => setTime(e.target.value)}
                             />
                         </div>
@@ -157,7 +157,7 @@ function OrganizationProfile() {
                         <textarea 
                              className={styles.input_box+' '+styles.textarea} 
                              type="textarea" id="name" name="name" 
-                             placeholder="Enter Name of Product..."
+                             placeholder="Tell something about your organization..."
                              rows="4" cols="50"
                            //   onChange={(e) => setName(e.target.value)}
                         />

@@ -31,28 +31,28 @@ function UserProfile() {
                           <input 
                               className={styles.input_box} 
                               type="text" id="name" name="name" 
-                              placeholder="Enter Name of Product..."
+                              placeholder="Enter your name..."
                             //   onChange={(e) => setName(e.target.value)}
                           />
 
                           <label>Email</label>
                           <div className={styles.icon_input_box} style={{display:"flex",alignItems:"center"}}>
-                              <i className="fas fa-rupee-sign" style={{fontWeight:"100"}}></i>
+                              <i className="fas fa-envelope" style={{fontWeight:"100"}}></i>
                               <input 
                                   className={styles.icon_input}  
                                   type="number" min="0.00" step="any" id="price" name="price" 
-                                  placeholder="Enter Price of Product..."
+                                  placeholder="Enter your email..."
                                 //   onChange={(e) => setPrice(e.target.value)}
                               />
                           </div>
 
                           <label>Phone no.</label>
                           <div className={styles.icon_input_box} style={{display:"flex",alignItems:"center"}}>
-                              <i className="fas fa-rupee-sign" style={{fontWeight:"100"}}></i>
+                              <i className="fas fa-phone" style={{fontWeight:"100"}}></i>
                               <input 
                                   className={styles.icon_input}  
                                   type="number" min="0.00" step="any" id="price" name="price" 
-                                  placeholder="Enter Price of Product..."
+                                  placeholder="Enter your phone no..."
                                 //   onChange={(e) => setPrice(e.target.value)}
                               />
                           </div>
@@ -65,11 +65,11 @@ function UserProfile() {
 
                         <label>College Name</label>
                         <div className={styles.icon_input_box} style={{display:"flex",alignItems:"center"}}>
-                            <i className="fas fa-clock" style={{fontWeight:"100"}}></i>
+                            <i className="fas fa-graduation-cap" style={{fontWeight:"100"}}></i>
                             <input 
                                 className={styles.icon_input}  
                                 type="number" min="0.00" step="any" id="time" name="time" 
-                                placeholder="Enter time required for Production..."
+                                placeholder="Enter your college name ..."
                                 // onChange={(e) => setTime(e.target.value)}
                             />
                         </div>
@@ -114,7 +114,7 @@ function UserProfile() {
                                 <input type="radio" value="male" id="male"
                                     // onChange={this.handleChange} name="gender" 
                                 />
-                                <i className="fas fa-clock" style={{fontWeight:"100",margin:'0px 10px'}}></i>
+                                <i className="fas fa-male" style={{fontWeight:"100",margin:'0px 10px'}}></i>
                                 <label for="male">Male</label>
                             </div>
                             
@@ -123,7 +123,7 @@ function UserProfile() {
                                 <input type="radio" value="female" id="female"
                                     // onChange={this.handleChange} name="gender" 
                                 />
-                                <i className="fas fa-clock" style={{fontWeight:"100",margin:'0px 10px'}}></i>
+                                <i className="fas fa-female" style={{fontWeight:"100",margin:'0px 10px'}}></i>
                                 <label for="female">Female</label>
                             </div>
                         </div>
@@ -132,7 +132,7 @@ function UserProfile() {
                         <textarea 
                              className={styles.input_box+' '+styles.textarea} 
                              type="textarea" id="name" name="name" 
-                             placeholder="Enter Name of Product..."
+                             placeholder="Tell something about yourself..."
                              rows="4" cols="50"
                            //   onChange={(e) => setName(e.target.value)}
                         />
