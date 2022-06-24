@@ -37,7 +37,7 @@ function CreateEvent() {
             if (!profileData) {
                 router.push('/')
             } else {
-                console.log(profileData)
+                console.log(profileData.id)
                 setOwnerId(profileData.id)   
             }
 
@@ -49,6 +49,7 @@ function CreateEvent() {
 
     async function fetchEvents() {
         try {
+            console.log('fect',ownerId)
             const {data , error} = await supabase
             .from('events')
             .select(`id,name`)

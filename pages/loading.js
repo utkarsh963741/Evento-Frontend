@@ -42,7 +42,7 @@ function Loading() {
                 .select()
                 .eq('entity_id',profile.id)
     
-                if(data)
+                if(data.type)
                 {
                     router.push('/home')
                 }

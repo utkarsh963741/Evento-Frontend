@@ -9,6 +9,7 @@ import { supabase } from '../utils/supabaseClient'
 function Navbar(props) {
 
     const [profile, setProfile] = useState(null)
+    const [type, setType] = useState(null)
     const router = useRouter()
 
     const [click, setclick] = useState(false);
@@ -22,6 +23,10 @@ function Navbar(props) {
     useEffect(() => {
         fetchProfile()
     }, [])
+
+    useEffect(() => {
+        fetchData()
+    }, [profile])
 
     async function fetchProfile() {
         try {
@@ -37,6 +42,22 @@ function Navbar(props) {
         } catch (error) {
             alert(error.message)
             router.push('/')
+        }
+    }
+
+    async function fetchData() {
+        if(profile)
+        try {
+            const {data, error} = await supabase.from('type').select('*').eq('entity_id',profile.id)
+ 
+            if(data)
+            {
+                console.log(data[0].type)
+                setType(data[0].type)
+            }
+
+        } catch (error) {
+            alert(error.message)
         }
     }
 
@@ -77,12 +98,48 @@ function Navbar(props) {
                         <li className={styles.nav_item}>
                             <Link href='/home'><i className="far fa-home" style={{fontSize:'1.5em'}}></i></Link>
                         </li>
-                        <li className={styles.nav_item}>
-                            <Link href='/explore'><i className="far fa-compass" style={{fontSize:'1.5em'}}></i></Link>
-                        </li>
-                        <li className={styles.nav_item}>
-                            <Link href='/account'><i className="far fa-calendar-day" style={{fontSize:'1.5em'}}></i></Link>
-                        </li>
+                        {
+                            type=='user'?
+                            <li className={styles.nav_item}>
+                                <Link href='/explore'><i className="far fa-compass" style={{fontSize:'1.5em'}}></i></Link>
+                            </li>
+                            
+                            :
+                            ''
+                        }
+
+                        {
+                            type=='user'?
+                            <li className={styles.nav_item}>
+                                <Link href='/account'><i className="far fa-calendar-day" style={{fontSize:'1.5em'}}></i></Link>
+                            </li>
+                            
+                            :
+                            ''
+                        }
+
+                        {
+                            type=='organization'?
+                            <li className={styles.nav_item}>
+                                <Link href='/organization/createEvent'><i className="far fa-calendar-plus" style={{fontSize:'1.5em'}}></i></Link>
+                            </li>
+                            
+                            :
+                            ''
+                        }
+
+                        {
+                            type=='organization'?
+                            <li className={styles.nav_item}>
+                                <Link href='/organization/createPost'><i className="far fa-plus-circle" style={{fontSize:'1.5em'}}></i></Link>
+                            </li>
+                            
+                            :
+                            ''
+                        }
+
+                            
+                        
                         {/* <li className={styles.nav_item}>
                             <Link href='/test'><i className="far fa-hammer" style={{fontSize:'1.5em'}}></i></Link>
                         </li> */}

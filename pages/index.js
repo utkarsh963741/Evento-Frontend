@@ -34,7 +34,7 @@ export default function Home() {
         const profileData = await supabase.auth.user()
 
         if (profileData) {
-            router.push('/home')
+            router.push('/loading')
         }
 
     } catch (error) {

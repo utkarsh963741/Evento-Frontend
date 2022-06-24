@@ -55,6 +55,7 @@ function OrganizationProfile() {
             affiliateOrg = [...selectedOption].map(item=>{return item.value})
 
           const data = {
+            "id":profile.id,
             "name":name,
             "web_link":link,
             "dp":imageURL,
