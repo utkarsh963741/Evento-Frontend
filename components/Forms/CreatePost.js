@@ -9,6 +9,90 @@ import ImageUpload from '../ImageUpload';
 
 function CreateEvent() {
     const [imageURL, setImageURL] = useState(null)
+    const [caption , setCaption] = useState(null)
+    const [ownerId, setOwnerId] =  useState(null)
+    const [eventData, setEventData] = useState(null)
+    const [selectedOption, setSelectedOption] = useState(null);
+
+    const [loading, setLoading] = useState(false)
+    const router = useRouter()
+ 
+    // handle onChange event of the dropdown
+    const handleChange = e => {
+        setSelectedOption(e);
+    }
+
+    useEffect(() => {
+        fetchProfile()
+    }, [])
+
+    useEffect(() => {
+        fetchEvents()
+    }, [ownerId])
+
+    async function fetchProfile() {
+        try {
+            const profileData = await supabase.auth.user()
+
+            if (!profileData) {
+                router.push('/')
+            } else {
+                console.log(profileData)
+                setOwnerId(profileData.id)   
+            }
+
+        } catch (error) {
+            alert(error.message)
+            router.push('/')
+        }
+    }
+
+    async function fetchEvents() {
+        try {
+            const {data , error} = await supabase
+            .from('events')
+            .select(`id,name`)
+            .eq('parent_org',ownerId)
+    
+            if (data) {
+              let temp= [...data].map((item)=>{return {'value':item.id,'label':item.name}})
+              console.log(temp)
+              setEventData(temp) 
+            }
+    
+        } catch (error) {
+            console.log('error',error)
+        }
+    }
+
+    async function CreatePost() {
+        try {
+          setLoading(true)
+          var event = selectedOption
+
+          const data = {
+            "caption":caption,
+            "pic":imageURL,
+            "owner_id":ownerId,
+            "event_id":event
+          }
+    
+          console.log(data)
+          let { error } = await supabase.from('post').upsert(data, {
+            returning: 'minimal', // Don't return the value after inserting
+          })
+    
+          if (error) {
+            throw error
+          }
+        } catch (error) {
+          alert(error.message)
+        } finally {
+            setLoading(false)
+            router.push('/home')
+        }
+      }
+
     return (
         <>
             <div className={styles.container}> 
@@ -29,31 +113,41 @@ function CreateEvent() {
                              className={styles.input_box+' '+styles.textarea} 
                              type="textarea" id="name" name="name" 
                              placeholder="Enter Name of Product..."
-                             rows="4" cols="50"
-                           //   onChange={(e) => setName(e.target.value)}
+                             rows="7" cols="50"
+                             onChange={(e) => setCaption(e.target.value)}
                         />
 
                         <div>
-                            <label>Branch</label>
-                            <select className={styles.input_box}  
-                                    id="branch" name="branch"
-                                    // onChange={(e) => setType(e.target.value)}
-                            >
-                                <option value="cse">Computer Science Engineering</option>
-                                <option value="ise">Information Science Engineering</option>
-                                <option value="ece">Electronics and Communication Engineering</option>
-                                <option value="ise">Engineering</option>
-                            </select>
+                            <label>Event</label>
+                            {
+                                eventData
+                                ?
+                                <div className={styles.select_box} >
+                                    <Select
+                                        placeholder="Select Option"
+                                        value={selectedOption}
+                                        options={eventData}
+                                        onChange={handleChange} 
+                                    />
+                                </div>
+                                :
+                                <div className={styles.select_box} >
+                                    <input 
+                                        className={styles.icon_input}  
+                                        placeholder="Select Option"
+                                        disabled='true'
+                                    />
+                                </div>
+                            }
                         </div>
 
                         <button 
                             className={styles.btn}
                             style={{width:'100%'}}
-                            onClick={() => AddProduct({ name, price, time ,imageURL})}
-                            // disabled={loading}
+                            onClick={() => CreatePost()}
+                            disabled={loading}
                         >
-                            Create Post
-                            {/* {loading ? 'Loading ...' : 'Add Product Type'} */}
+                            {loading ? 'Loading ...' : 'Create Post'}
                         </button>
                     </div>
                 </div>

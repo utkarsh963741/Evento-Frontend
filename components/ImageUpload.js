@@ -37,12 +37,12 @@ export default function ImageUpload({ url, sizeh, sizew, onUpload }) {
       const fileName = `${Math.random()}.${fileExt}`
       const filePath = `${fileName}`
 
-      let { error: uploadError } = await supabase.storage
+      let { data, error } = await supabase.storage
         .from('images')
         .upload(filePath, file)
 
-      if (uploadError) {
-        throw uploadError
+      if (error) {
+        console.log(error)
       }
 
       onUpload(filePath)

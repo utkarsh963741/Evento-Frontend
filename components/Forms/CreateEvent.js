@@ -8,7 +8,73 @@ import Link from 'next/link'
 import ImageUpload from '../ImageUpload';
 
 function CreateEvent() {
-    const [imageURL, setImageURL] = useState(null)
+    const [bannerURL, setBannerUrl] = useState(null)
+    const [logoURL, setLogoURL] = useState(null)
+    const [profile, setProfile] = useState(null)
+    const [title, setTitle] = useState(null)
+    const [webUrl, setWebUrl] = useState(null)
+    const [date, setDate] = useState(null)
+    const [location, setLocation] = useState(null)
+    const [details, setDetails] = useState(null)
+    const [loading, setLoading] = useState(null)
+
+    const router = useRouter()
+
+    useEffect(() => {
+        fetchProfile()
+    }, [])
+
+    async function fetchProfile() {
+        try {
+            const profileData = await supabase.auth.user()
+
+            if (!profileData) {
+                router.push('/')
+            } else {
+                console.log(profileData)
+                setProfile(profileData)   
+            }
+
+        } catch (error) {
+            alert(error.message)
+            router.push('/')
+        }
+    }
+
+    async function AddEvent() {
+      try {
+        setLoading(true)
+
+        const data = {
+          "parent_org":profile.id,
+          "date":date,
+          "detail":{
+            "title":title,
+            "banner_url":bannerURL,
+            "logo_url":logoURL,
+            "web_url":webUrl,
+            "location":location,
+            "details":details
+          }
+        }
+  
+        console.log(data)
+        let { error } = await supabase.from('events').upsert(data, {
+          returning: 'minimal', // Don't return the value after inserting
+        })
+  
+        if (error) {
+          throw error
+        }
+      } catch (error) {
+        alert(error.message)
+      } finally {
+          setLoading(false)
+          router.push('/home')
+      }
+    }
+
+    if(profile)
     return (
         <>
             <div className={styles.container}> 
@@ -16,11 +82,11 @@ function CreateEvent() {
                       <div style={{margin:'10px 0'}}>
                           <label>Banner Image</label>
                           <ImageUpload
-                            url={imageURL}
+                            url={bannerURL}
                             sizeh={175}
                             sizew={'100%'}
                             onUpload={(url) => {
-                              setImageURL(url)
+                              setBannerUrl(url)
                             }}
                           />
                         </div>
@@ -28,21 +94,21 @@ function CreateEvent() {
                         <div style={{display:"flex",alignItems:'center'}}>
                         <div style={{height:'100%',width:'40%'}}>
                           <ImageUpload
-                            url={imageURL}
+                            url={logoURL}
                             sizeh={215}
                             sizew={215}
                             onUpload={(url) => {
-                              setImageURL(url)
+                              setLogoURL(url)
                             }}
                           />
                         </div>
-                        <div style={{display:"flex",flexDirection:"column",flexGrow:'1'}}>
+                        <div style={{display:"flex",flexDirection:"column",flexGrow:'1',marginLeft:'10px'}}>
                           <label>Event Title</label>
                           <input 
                               className={styles.input_box} 
                               type="text" id="name" name="name" 
                               placeholder="Enter the Event name..."
-                            //   onChange={(e) => setName(e.target.value)}
+                              onChange={(e) => setTitle(e.target.value)}
                           />
 
                           <label>Website URL</label>
@@ -50,9 +116,9 @@ function CreateEvent() {
                               <i className="fas fa-globe" style={{fontWeight:"100"}}></i>
                               <input 
                                   className={styles.icon_input}  
-                                  type="number" min="0.00" step="any" id="price" name="price" 
+                                  type="text" id="price" name="price" 
                                   placeholder="Enter the URL..."
-                                //   onChange={(e) => setPrice(e.target.value)}
+                                  onChange={(e) => setWebUrl(e.target.value)}
                               />
                           </div>
 
@@ -61,9 +127,9 @@ function CreateEvent() {
                               <i className="fas fa-calendar" style={{fontWeight:"100"}}></i>
                               <input 
                                   className={styles.icon_input}  
-                                  type="number" min="0.00" step="any" id="price" name="price" 
+                                  type="date" id="price" name="price" 
                                   placeholder="Enter the Date..."
-                                //   onChange={(e) => setPrice(e.target.value)}
+                                  onChange={(e) => setDate(e.target.value)}
                               />
                           </div>
                         </div>
@@ -73,8 +139,8 @@ function CreateEvent() {
                         <label>Location</label>
                         <div style={{display:"flex",alignItems:"center"}}>
                             <div style={{margin:'5px 20px'}}>
-                                <input type="radio" value="male" id="male"
-                                    // onChange={this.handleChange} name="gender" 
+                                <input type="radio" value="online" id="offline"
+                                    onChange={(e) => setLocation('online')} name="location" 
                                 />
                                 <i className="fas fa-video" style={{fontWeight:"100",margin:'0px 10px'}}></i>
                                 <label for="male">Online</label>
@@ -82,23 +148,12 @@ function CreateEvent() {
                             
 
                             <div>
-                                <input type="radio" value="female" id="female"
-                                    // onChange={this.handleChange} name="gender" 
+                                <input type="radio" value="offline" id="offline"
+                                    onChange={(e) => setLocation('offline')} name="location" 
                                 />
                                 <i className="fas fa-users" style={{fontWeight:"100",margin:'0px 10px'}}></i>
                                 <label for="female">Offline</label>
                             </div>
-                        </div>
-                        
-                        <label>Organization</label>
-                        <div className={styles.icon_input_box} style={{display:"flex",alignItems:"center"}}>
-                            <i className="fas fa-table" style={{fontWeight:"100"}}></i>
-                            <input 
-                                className={styles.icon_input}  
-                                type="number" min="0.00" step="any" id="time" name="time" 
-                                placeholder="Organization..."
-                                // onChange={(e) => setTime(e.target.value)}
-                            />
                         </div>
 
                         <label>About</label>
@@ -107,17 +162,16 @@ function CreateEvent() {
                              type="textarea" id="name" name="name" 
                              placeholder="Enter event details here..."
                              rows="15" cols="50"
-                           //   onChange={(e) => setName(e.target.value)}
+                             onChange={(e) => setDetails(e.target.value)}
                         />
 
                         <button 
                             className={styles.btn}
                             style={{width:'100%'}}
-                            onClick={() => AddProduct({ name, price, time ,imageURL})}
-                            // disabled={loading}
+                            onClick={() => AddEvent()}
+                            disabled={loading}
                         >
-                            Submit
-                            {/* {loading ? 'Loading ...' : 'Add Product Type'} */}
+                            {loading ? 'Loading ...' : 'Submit'}
                         </button>
                     </div>
                 </div>

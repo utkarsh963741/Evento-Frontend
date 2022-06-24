@@ -22,7 +22,7 @@ function createProfile() {
         }
       ];
 
-      const [selectedOption, setSelectedOption] = useState(null);
+      const [selectedOption, setSelectedOption] = useState({value: 1,label: "User"});
  
   // handle onChange event of the dropdown
   const handleChange = e => {
@@ -42,8 +42,7 @@ function createProfile() {
                     onChange={handleChange} // assign onChange function
                 />
                 </div>
-                <UserProfile/>
-                <OrganizationProfile/>
+                {selectedOption.value==1?<UserProfile/>:<OrganizationProfile/>}
             </div>
         </div>
     )
