@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { supabase } from '../../utils/supabaseClient'
 import { useRouter } from 'next/router'
 import dynamic from "next/dynamic";
+import Select from 'react-select';
 
 import styles from '../../styles/Form.module.css'
 import Link from 'next/link'
@@ -52,11 +53,11 @@ function CreateEvent() {
             console.log('fect',ownerId)
             const {data , error} = await supabase
             .from('events')
-            .select(`id,name`)
+            .select(`*`)
             .eq('parent_org',ownerId)
     
             if (data) {
-              let temp= [...data].map((item)=>{return {'value':item.id,'label':item.name}})
+              let temp= [...data].map((item)=>{return {'value':item.id,'label':item.detail.title}})
               console.log(temp)
               setEventData(temp) 
             }
@@ -69,7 +70,7 @@ function CreateEvent() {
     async function CreatePost() {
         try {
           setLoading(true)
-          var event = selectedOption
+          var event = selectedOption.value
 
           const data = {
             "caption":caption,

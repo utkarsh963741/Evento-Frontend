@@ -20,7 +20,7 @@ export default function Home() {
       if(session)
       {
         setSession(session)
-        router.push('/home')
+        router.push('/loading')
       }
     })
   }, [])
