@@ -30,13 +30,13 @@ function Event() {
                             <div style={{marginLeft:'100px'}}>
                                 <h2 style={{fontWeight:'400'}}>Title</h2>
                                 <br/>
-                                <p>Website URL</p>
+                                <p><i className='fal fa-link'/>  Website URL</p>
                                 <br/>
-                                <p>Date</p>
+                                <p><i className='fal fa-calendar'/>  Date</p>
                                 <br/>
-                                <p>Location</p>
+                                <p><i className='fal fa-compass'/>  Location</p>
                                 <br/>
-                                <p>Registered</p>
+                                <p><i className='fal fa-users'/>  Registered</p>
                                 <button>REGISTER</button>
                             </div>
                         </div>

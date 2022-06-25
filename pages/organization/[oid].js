@@ -58,11 +58,11 @@ function Organization() {
                             <br/>
                             <a href='mailto:shubham963741@gmail.com'><i className='fal fa-envelope'/> Email</a> 
                             <br/>
-                            <a href='tel:+14123815500'>phone</a>
+                            <a href='tel:+14123815500'><i className='fal fa-phone'/> phone</a>
                             <br/><br/>
-                            <p>College</p>
-                            <p>Location</p>
-                            <a href="">WebLink</a>
+                            <p><i className="fal fa-award"/> College</p>
+                            <p><i className='fal fa-compass'/> Location</p>
+                            <a href=""><i className='fal fa-link'/> WebLink</a>
                             <br/><br/>
                             <p>About US</p>
                         </div>
