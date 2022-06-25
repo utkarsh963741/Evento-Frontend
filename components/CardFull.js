@@ -2,56 +2,67 @@ import React, { useState, useEffect } from 'react';
 import styles from '../styles/CardFull.module.css'
 
 function CardFull(props) {
-
+    let commentRender = []
+    if(props.comment && props.comment.length > 1)
+    {
+        commentRender = [...props.comment].map((item,index)=>{
+            <div className={styles.comment}>
+                <b>{item.user.name}</b> {item.text}
+            </div>
+        })
+    }
     return (
         <div className={styles.cardBody}>
             <div className={styles.closeIcon}><i className='far fa-times' onClick={props.close}></i></div>
             <div className={styles.cardContainer}>
                 <div className={styles.imageContainer}>
-                    <img src="/assets/download.jpg" style={{width:'100%'}} alt=""></img>
+                    <img src={'https://anhjgolybidaizfwffyu.supabase.co/storage/v1/object/public/images/'+props.data.pic} style={{width:'100%'}} alt=""></img>
                 </div>
 
                 <div className={styles.infoContainer}>
                     <div className={styles.cardHeader}>
                         <div>
-                            <img src="/assets/profile.jpg"  alt=""></img>
-                            <p style={{fontWeight:'600'}}>user_name</p>
+                            <img src={'https://anhjgolybidaizfwffyu.supabase.co/storage/v1/object/public/images/'+props.data.organization.dp}  alt=""></img>
+                            <p style={{fontWeight:'600'}}>{props.data.organization.name}</p>
                         </div>
-                        <div className={styles.link}>Follow</div>
                     </div>
 
                     <div className={styles.caption}>
-                        tprasanna_ Spam 2k22 🧡
-                        #ethnicday
-                        #nammakudlarally
+                        {props.data.caption}
                     </div>
 
-                    <div className={styles.commentContainer}>
-                        <div>
-                            <div className={styles.comment}>
-                                <b>bharath__192</b>  @rakshith_shetty_7 last pic is like Akshay Kumar in "mujhse shaadi karogi"😂😂
-                            </div>
-                            <div className={styles.comment}>
-                                <b>bharath__192</b>  @rakshith_shetty_7 last pic is like Akshay Kumar in "mujhse shaadi karogi"😂😂
-                            </div>
+                            {commentRender?
+                        <div className={styles.commentContainer}>
+                            {commentRender} 
                         </div>
-                        <div className={styles.loadComment}><i className='far fa-plus-circle'></i></div>
-                    </div>
+                    :''}
 
                     <div className={styles.buttonContainer}>
                         <i className='far fa-heart'></i>
-                        <i className='far fa-comment'></i>
                     </div>
                     <div className={styles.postDetails}>
-                        <div>Liked by <div> 170 </div> people</div>
+                        {props.data.no_likes?<div>Liked by <div onClick={() => handleOpen()}> {props.data.no_likes} </div> people</div>:''}
                         <p>3 hours ago</p>
                     </div>
 
-                    <div className={styles.addComment}>
-                        <i className='far fa-smile'></i>
-                        <input></input>
-                        <div>Post</div>
-                    </div>
+                    {
+                        props.userType == 'user'
+                        ?
+                        <div className={styles.addComment}>
+                            <i className='far fa-smile'></i>
+                            <input onChange={(e) => setMyComment(e.target.value)}></input>
+                            <div 
+                                        className={styles.btn}
+                                        style={{width:'100%'}}
+                                        onClick={() => AddComment()}
+                                        disabled={loading}
+                                    >
+                                        {loading ? 'Loading ...' : 'Post'}
+                            </div>
+                        </div>
+                        :
+                        ''
+                    }
                 </div>
                 
 

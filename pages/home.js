@@ -11,6 +11,7 @@ import Card from '../components/Card';
 function Home() {
     const [profile, setProfile] = useState(null)
     const [type, setType] = useState(null)
+    const [feedData, setFeedData] = useState(null)
 
     useEffect(() => {
         fetchProfile()
@@ -28,93 +29,96 @@ function Home() {
         try {
             const profileData = await supabase.auth.user()
 
-            if (!profileData) {
-                router.push('/')
-            } 
-            else{
+            if (profileData) {
                 setProfile(profileData)
             }
 
         } catch (error) {
             alert(error.message)
-            router.push('/')
         }
     }
 
     async function fetchData() {
-        if(profile)
-        try {
-            const {data, error} = await supabase.from('type').select('*').eq('entity_id',profile.id)
- 
-            if(data)
-            {
-                console.log(data[0].type)
-                setType(data[0].type)
-            }
+        if (profile)
+            try {
+                const { data, error } = await supabase.from('type').select('*').eq('entity_id', profile.id)
 
-        } catch (error) {
-            alert(error.message)
-        }
+                if (data) {
+                    console.log(data[0].type)
+                    setType(data[0].type)
+                }
+
+            } catch (error) {
+                alert(error.message)
+            }
     }
 
     async function fetchFeed() {
-        if(profile && type)
-        {
-            if(type=="organization")
-            {
+        if (profile && type) {
+            if (type == "organization") {
                 let aff = []
                 try {
-                    const {data, error} = await supabase.from('organization').select('*').eq('id',profile.id)
-        
-                    if(data)
-                    {
-                        console.log(data[0].affeliate_org)
+                    const { data, error } = await supabase.from('organization').select('*').eq('id', profile.id)
+
+                    if (data) {
+                        console.log('afflesi', data[0].affeliate_org)
                         aff = [...data[0].affeliate_org]
+                        console.log(aff)
                         // setType(data[0].type)
+                        try {
+                            const { data, error } = await supabase.from('post').select('*,organization(*)').in('owner_id', aff)
+
+                            if (data) {
+                                console.log(data)
+                                setFeedData(data)
+                            }
+
+                        } catch (error) {
+                            console.log(error.message)
+                        }
                     }
 
                 } catch (error) {
                     console.log(error.message)
                 }
-                finally
-                {
-                    try {
-                        const {data, error} = await supabase.from('post').select('*').in('id',aff)
-            
-                        if(data)
-                        {
-                            console.log(data)
-                        }
-    
-                    } catch (error) {
-                        console.log(error.message)
-                    }
-                }
             }
-            else
-            {
+            else {
                 console.log('fuck')
             }
         }
     }
 
-    return (
-        <>
-            <Layout>
-                <div>
-                    <Card/>
-                    <Card/>
-                    <Card/>
-                    <Card/>
-                    <Card/>
-                    <Card/>
-                    <Card/>
-                    <Card/>
-                </div>
-            </Layout>
-
-        </>
-    )
+    if(feedData)
+    {
+        let feed = [...feedData].map((item,index)=>{
+            return (
+                <Card data={item} profileData={profile} userType={type}/>
+            )
+        })
+        return (
+            <>
+                <Layout>
+                    <div>
+                        {feed}
+                    </div>
+                </Layout>
+    
+            </>
+        )
+    }
+    else
+    {
+        return (
+            <>
+                <Layout>
+                    <div>
+                    </div>
+                </Layout>
+    
+            </>
+        )
+    }
+    
 }
 
 export default Home
